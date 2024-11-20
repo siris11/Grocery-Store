@@ -1,0 +1,48 @@
+{% extends 'base1.html' %}
+{% block content %}
+
+<div class="content">
+    <div class="container mt-5">
+        <h2 class="text-center">Your Cart</h2>
+        <table class="table table-bordered border-primary">
+            <thead>
+                <tr>
+                    <th style="background: #6F00FF; color:white;">Product</th>
+                    <th style="background: #6F00FF; color:white;">Price</th>
+                    <th style="background: #6F00FF; color:white;">Quantity</th>
+                    <th style="background: #6F00FF; color:white;">Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for d in details %}
+                    <tr>
+                        <td>{{ d[1].name }}</td>
+                        <td><i class="bi bi-currency-rupee"></i>{{ d[1].rate }}{{ d[1].unit }}</td>
+                        <td>{{ d[0].quantity }}</td>
+                        <td><i class="bi bi-currency-rupee"></i>{{ d[1].rate * d[0].quantity }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3" style="background: lightgray; text-align: right;">
+                       <b>Cart Total</b> 
+                    </td>
+                    <td style="background: lightgray;"><b><i class="bi bi-currency-rupee"></i>{{ grand_total }}</b></td> <!-- Empty cell for alignment -->
+                </tr>
+            </tfoot>
+        </table>
+    
+        {% if  details|length > 0 %}
+        <a href="/cart_purchase" >
+            <button type="button" class="btn btn-success btn-sm">Buy Cart</button>
+        </a>
+        {% else %}
+        <td style="width: 120px;">
+            <button type="button" class="btn btn-success btn-sm" disabled>Buy Cart</button>
+        </td>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

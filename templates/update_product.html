@@ -1,0 +1,46 @@
+{% extends 'base2.html' %}
+{% block content %}
+<div class="content">
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6 signup">
+            <h2 class="text-center">Update Product</h2>
+
+            <form action="/update_product/{{product.p_id}}" method="post">
+                <div class="mb-3">
+                    <label for="product" class="form-label">Product</label>
+                    <input type="text" class="form-control" name="product" value="{{product.name}}" max="50" required>
+                </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <!-- <input type="text" class="form-control" name="description" value="{{product.description}}" max="100"
+                        required> -->
+                    <textarea name="description" class="form-control" id="" cols="30" rows="2" max="100" required>
+                        {{product.description}}
+                    </textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="stock" class="form-label">Stock</label>
+                    <input type="number" class="form-control" name="stock" value="{{product.stock}}" required min="0">
+                </div>
+                <div class="mb-3">
+                    <label for="rate" class="form-label">Price</label>
+                    <input type="number" class="form-control" name="rate" value="{{product.rate}}" required min="0">
+                </div>
+                <div class="mb-3">
+                    <label for="unit" class="form-label">Metric</label>
+                    <select class="form-select" name="unit" required value="{{product.unit}}">
+                        <option value="{{product.unit}}"></option>
+                        <option value="/kg">Kilogram </option>
+                        <option value="/gm">Gram</option>
+                        <option value="/litre">Litre</option>
+                        <option value="/unit">Unit</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Update Product</button>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}

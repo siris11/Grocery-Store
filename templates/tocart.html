@@ -1,0 +1,32 @@
+{% extends 'base1.html' %}
+{% block content %}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6 signup">
+            <h2 class="text-center">Add to Cart</h2>
+
+            <form action="/tocart/{{product.p_id}}" method="post">
+                <div class="mb-3">
+                    <label for="productName" class="form-label">Product</label>
+                    <input type="text" class="form-control" name="product"  disabled value="{{product.name}}">
+                </div>
+                <div class="mb-3">
+                    <label for="price" class="form-label">Price</label>
+                    <input type="text" class="form-control" readonly value="{{ product.rate }}{{ product.unit }}">
+                </div>
+                <div class="mb-3">
+                    <label for="stock" class="form-label">Stock</label>
+                    <input type="number" class="form-control" name="stock"  disabled value="{{product.stock - product.sold}}">
+                </div>
+                <div class="mb-3">
+                    <label for="quantity" class="form-label">Quantity</label>
+                    <input type="number" class="form-control" name="quantity" min="1" max="{{product.stock - product.sold}}">
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Add</button>
+            </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

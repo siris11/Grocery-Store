@@ -1,0 +1,30 @@
+{% extends 'base1.html' %}
+{% block content %}
+
+<div class="content">
+<div class="container mt-5">
+    <h2 class="text-center">Your Orders</h2>
+    <table class="table table-bordered border-primary">
+        <thead>
+            <tr>
+                <th style="background: #6F00FF; color:white;">Product</th>
+                <th style="background: #6F00FF; color:white;">Price</th>
+                <th style="background: #6F00FF; color:white;">Quantity</th>
+                <th style="background: #6F00FF; color:white;">Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in orders %}
+                <tr>
+                    <td>{{ order.product_name }}</td>
+                    <td>{{ order.rate }}</td>
+                    <td>{{ order.quantity }}</td>
+                    <td><i class="bi bi-currency-rupee"></i>{{ order.total }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+</div>
+
+{% endblock %}

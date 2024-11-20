@@ -1,0 +1,42 @@
+
+{% extends 'base2.html' %}
+{% block content %}
+
+<div class="content">
+<div class="container mt-5">
+    <h2 class="text-center">Products</h2>
+    <table class="table table-bordered border-primary">
+        <thead>
+            <tr>
+                <th style="background: #5A4FCF; color: white;">Product</th>
+                <th style="background: #5A4FCF; color: white;">Category</th>
+                <th style="background: #5A4FCF; color: white;">Description</th>
+                <th style="background: #5A4FCF; color: white;">Price</th>
+                <th style="background: #5A4FCF; color: white;">Stock</th>
+                <th style="background: #5A4FCF; color: white;">Sold</th>
+                <th style="background: #5A4FCF; color: white;">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+                <tr>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.category }}</td>
+                    <td>{{ product.description }}</td>
+                    <td><i class="bi bi-currency-rupee"></i>{{ product.rate }}{{ product.unit }} </td>
+                    <td>{{ product.stock - product.sold }}</td>
+                    <td>{{ product.sold }}</td>
+                    <td style="width: 100px;">
+                        <a href="/update_product/{{product.p_id}}">
+                            <button type="button" class="btn btn-success btn-sm"><i class="bi bi-pencil-square"></i></button></a> 
+                        <a href="/delete_product/{{product.p_id}}">
+                            <button type="button" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></button></a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+</div>
+
+{% endblock %}

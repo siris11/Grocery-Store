@@ -1,0 +1,43 @@
+{% extends 'base1.html' %}
+{% block content %}
+
+<div class="content">
+<div class="container mt-5">
+    <h2 class="text-center">Products</h2>
+    <table class="table table-bordered border-primary">
+        <thead>
+            <tr>
+                <th style="background: #6F00FF; color:white;">Product</th>
+                <th style="background: #6F00FF; color:white;">Category</th>
+                <th style="background: #6F00FF; color:white;">Description</th>
+                <th style="background: #6F00FF; color:white;">Price</th>
+                <th style="background: #6F00FF; color:white;">Stock</th>
+                <th style="background: #6F00FF; color:white;">Add to Cart</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for product in products %}
+                <tr>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.category }}</td>
+                    <td>{{ product.description }}</td>
+                    <td><i class="bi bi-currency-rupee"></i>{{ product.rate }}{{ product.unit }}</td>
+                    <td>{{ product.stock - product.sold}}</td>
+
+                    {% if (product.stock - product.sold) > 0 %}
+                    <td style="width: 120px;"><a href="/tocart/{{product.p_id}}" >
+                        <button type="button" class="btn btn-primary btn-sm">Add to cart</button></a>
+                    </td>
+                    {% else %}
+                    <td style="width: 120px;">
+                        <button type="button" class="btn btn-danger btn-sm">Out of Stock</button>
+                    </td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+</div>
+
+{% endblock %}
